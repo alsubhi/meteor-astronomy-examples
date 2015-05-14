@@ -1,3 +1,14 @@
+Addresses = new Mongo.Collection('addresses');
+
+Address = Astro.Class({
+  name: 'Address',
+  collection: Addresses,
+  fields: {
+    city: 'string',
+    state: 'string'
+  }
+});
+
 Members = new Mongo.Collection('members');
 
 Member = Astro.Class({
@@ -27,5 +38,15 @@ Member = Astro.Class({
       Validators.gte(18),
       Validators.lte(100)
     ])
+  },
+  relations: {
+    friends: {
+      type: 'many',
+      class: 'Member'
+    },
+    address: {
+      type: 'one',
+      class: 'Address'
+    }
   }
 });
