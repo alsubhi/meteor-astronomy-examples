@@ -40,13 +40,17 @@ Member = Astro.Class({
     ])
   },
   relations: {
-    friends: {
-      type: 'many',
-      class: 'Member'
-    },
+    // friends: {
+    //   type: 'many',
+    //   class: 'Member'
+    // },
     address: {
+      foreignAlias: 'member',
+      class: 'Address',
       type: 'one',
-      class: 'Address'
+      foreignType: 'one',
+      local: '_id',
+      foreign: 'memberId'
     }
   }
 });
