@@ -5,7 +5,8 @@ Address = Astro.Class({
   collection: Addresses,
   fields: {
     city: 'string',
-    state: 'string'
+    state: 'string',
+    memberId: 'string'
   }
 });
 
@@ -38,19 +39,12 @@ Member = Astro.Class({
       Validators.gte(18),
       Validators.lte(100)
     ])
-  },
-  relations: {
-    // friends: {
-    //   type: 'many',
-    //   class: 'Member'
-    // },
-    address: {
-      foreignAlias: 'member',
-      class: 'Address',
-      type: 'one',
-      foreignType: 'one',
-      local: '_id',
-      foreign: 'memberId'
-    }
+  }
+});
+
+Mem = Member.extend({
+  name: 'Mem',
+  fields: {
+    mem: 'string'
   }
 });
