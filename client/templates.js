@@ -12,9 +12,13 @@ Template.User.events({
   }
 });
 
+window.u = null;
+
 Template.Form.events({
   'change input': function(e, tmpl) {
     var user = this;
+
+    window.u = user;
 
     var field = e.currentTarget;
     user.set(field.id, field.value);
@@ -22,6 +26,8 @@ Template.Form.events({
   },
   'click [name=save]': function(e, tmpl) {
     var user = this;
+
+    window.u = user;
 
     if (user.validate()) {
       Meteor.call('/user/save', user, function(err) {

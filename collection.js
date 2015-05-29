@@ -7,7 +7,14 @@ User = Astro.Class({
     firstName: 'string',
     lastName: 'string',
     email: 'string',
-    age: 'number'
+    age: 'number',
+    address: {
+      type: 'object',
+      default: {
+        city: null,
+        state: null
+      }
+    }
   },
   methods: {
     fullName: function() {
@@ -15,24 +22,37 @@ User = Astro.Class({
     }
   },
   validators: {
-    firstName: Validators.and([
-      Validators.required(),
-      Validators.minlen(3)
-    ]),
-    lastName: Validators.and([
-      Validators.required(),
-      Validators.minlen(3)
-    ]),
-    email: Validators.and([
-      Validators.unique(),
-      Validators.required(),
-      Validators.email(3)
-    ]),
-    age: Validators.and([
-      Validators.required(),
-      Validators.gte(18),
-      Validators.lte(100)
-    ])
+    // firstName: [
+    //   Validators.required(),
+    //   Validators.minlen(3)
+    // ],
+    // lastName: [
+    //   Validators.required(),
+    //   Validators.minlen(3)
+    // ],
+    // email: [
+    //   Validators.required(),
+    //   Validators.unique(),
+    //   Validators.email(3)
+    // ],
+    // age: [
+    //   Validators.required(),
+    //   Validators.gte(18),
+    //   Validators.lte(100)
+    // ],
+    address: [
+      Validators.object(),
+      Validators.has('city'),
+      Validators.has('state')
+    ],
+    'address.city': [
+      Validators.string(),
+      Validators.minlen(2)
+    ],
+    'address.state': [
+      Validators.string(),
+      Validators.length(2)
+    ]
   },
   behaviors: ['timestamp']
 });

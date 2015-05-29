@@ -82,5 +82,21 @@
     <div class="error">{{getValidationError 'age'}}</div>
   {{/if}}
 
+  <div>
+    <label for="address.city">City</label>
+    <input id="address.city" type="text" value="{{address.city}}" class="{{#if hasValidationError 'address.city'}}error{{/if}}" />
+  </div>
+  {{#if hasValidationError 'address.city'}}
+    <div class="error">{{getValidationError 'address.city'}}</div>
+  {{/if}}
+
+  <div>
+    <label for="address.state">State</label>
+    <input id="address.state" type="text" value="{{address.state}}" class="{{#if hasValidationError 'address.state'}}error{{/if}}" />
+  </div>
+  {{#if hasValidationError 'address.state'}}
+    <div class="error">{{getValidationError 'address.state'}}</div>
+  {{/if}}
+
   <button type="button" name="save">Save</button>
 </template>
