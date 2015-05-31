@@ -8,12 +8,9 @@ User = Astro.Class({
     lastName: 'string',
     email: 'string',
     age: 'number',
-    address: {
-      type: 'object',
-      default: {
-        city: null,
-        state: null
-      }
+    addresses: {
+      type: 'array',
+      default: []
     }
   },
   methods: {
@@ -22,34 +19,45 @@ User = Astro.Class({
     }
   },
   validators: {
-    // firstName: [
-    //   Validators.required(),
-    //   Validators.minlen(3)
-    // ],
-    // lastName: [
-    //   Validators.required(),
-    //   Validators.minlen(3)
-    // ],
-    // email: [
-    //   Validators.required(),
-    //   Validators.unique(),
-    //   Validators.email(3)
-    // ],
-    // age: [
-    //   Validators.required(),
-    //   Validators.gte(18),
-    //   Validators.lte(100)
-    // ],
-    address: [
+    firstName: [
+      Validators.required(),
+      Validators.string(),
+      Validators.minLength(3)
+    ],
+    lastName: [
+      Validators.required(),
+      Validators.string(),
+      Validators.minLength(3)
+    ],
+    email: [
+      Validators.required(),
+      Validators.string(),
+      Validators.unique(),
+      Validators.email(3)
+    ],
+    age: [
+      Validators.required(),
+      Validators.number(),
+      Validators.gte(18),
+      Validators.lte(100)
+    ],
+    addresses: [
+      Validators.required(),
+      Validators.array(),
+      Validators.minLength(1, 'Provide at least one address')
+    ],
+    'addresses.$': [
       Validators.object(),
       Validators.has('city'),
       Validators.has('state')
     ],
-    'address.city': [
+    'addresses.$.city': [
+      Validators.required(),
       Validators.string(),
-      Validators.minlen(2)
+      Validators.minLength(2)
     ],
-    'address.state': [
+    'addresses.$.state': [
+      Validators.required(),
       Validators.string(),
       Validators.length(2)
     ]

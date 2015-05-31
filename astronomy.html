@@ -82,20 +82,28 @@
     <div class="error">{{getValidationError 'age'}}</div>
   {{/if}}
 
-  <div>
-    <label for="address.city">City</label>
-    <input id="address.city" type="text" value="{{address.city}}" class="{{#if hasValidationError 'address.city'}}error{{/if}}" />
-  </div>
-  {{#if hasValidationError 'address.city'}}
-    <div class="error">{{getValidationError 'address.city'}}</div>
+  <label>Addresses</label>
+  {{#if hasValidationError 'addresses'}}
+    <div class="error">{{getValidationError 'addresses'}}</div>
+  {{/if}}
+  {{#if hasValidationError 'addresses.$'}}
+    <div class="error">{{getValidationError 'addresses.$'}}</div>
   {{/if}}
 
   <div>
-    <label for="address.state">State</label>
-    <input id="address.state" type="text" value="{{address.state}}" class="{{#if hasValidationError 'address.state'}}error{{/if}}" />
+    <label for="addresses.0.city">City</label>
+    <input id="addresses.0.city" type="text" value="{{addresses.[0].city}}" class="{{#if hasValidationError 'addresses.0.city'}}error{{/if}}" />
   </div>
-  {{#if hasValidationError 'address.state'}}
-    <div class="error">{{getValidationError 'address.state'}}</div>
+  {{#if hasValidationError 'addresses.0.city'}}
+    <div class="error">{{getValidationError 'addresses.0.city'}}</div>
+  {{/if}}
+
+  <div>
+    <label for="addresses.0.state">State</label>
+    <input id="addresses.0.state" type="text" value="{{addresses.[0].state}}" class="{{#if hasValidationError 'addresses.0.state'}}error{{/if}}" />
+  </div>
+  {{#if hasValidationError 'addresses.0.state'}}
+    <div class="error">{{getValidationError 'addresses.0.state'}}</div>
   {{/if}}
 
   <button type="button" name="save">Save</button>
